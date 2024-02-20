@@ -16,7 +16,6 @@ const Main = () => {
     })
     },[])
 
-    
 
     const trucateString = (str, num) => {
       if(str?.length > num ) {
