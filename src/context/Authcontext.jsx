@@ -7,21 +7,21 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-const AuthContent = createContext();
+const AuthContext = createContext();
 
-export function AuthContextProvider({ childern }) {
+export function AuthContextProvider({ children }) {
   const [user, setUser] = useState({});
 
   function signUp(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
 
-  function logIn(emain, password) {
-    return signInWithEmailAndPassword(auth, emain, password);
+  function logIn(email, password) {
+    return signInWithEmailAndPassword(auth, email, password);
   }
 
   function logOut() {
-    return signOut(auth, emain, password);
+    return signOut(auth);
   }
 
   useEffect(() => {
@@ -31,15 +31,15 @@ export function AuthContextProvider({ childern }) {
     return () => {
       unsubscribe();
     };
-  });
+  }, [auth]); // <- Make sure to add auth as a dependency for useEffect
 
   return (
     <AuthContext.Provider value={{ signUp, logIn, logOut, user }}>
-      {childern}
+      {children}
     </AuthContext.Provider>
   );
 }
 
 export function UserAuth() {
-  return useContext(AuthContent);
+  return useContext(AuthContext);
 }
