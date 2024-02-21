@@ -17,13 +17,7 @@ const Main = () => {
     },[])
 
 
-    const trucateString = (str, num) => {
-      if(str?.length > num ) {
-        return str.slice(0, num) + '...'
-      } else {
-        return str
-      }
-    }
+
   
     const movieImg = `https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`
     
@@ -35,7 +29,7 @@ const Main = () => {
         <img className='w-full h-full object-cover' src={movieImg} alt={movie?.title} />
         <div className='absolute top-[20%] py-4 px-4' >
           <h1 className=" text-3xl md:text-5xl mx-auto ">{movie?.title}</h1>
-          <p className='w-full md:max-w-[80%] lg:max-w-[70%] xl:max-w-[50%] text-gray-200' >{trucateString(movie?.overview, 150)}</p>
+          <p className='w-full md:max-w-[80%] lg:max-w-[70%] xl:max-w-[50%] text-gray-200' >{movie?.overview}</p>
           <div className='my-4'>
             <button className='border bg-gray-300 border-gray-300 text-black py-2 px-5 hover:opacity-50' >Where to watch</button>
             <button className='border border-gray-300 text-white py-2 px-5 ml-4 hover:opacity-50'>Rate</button>
